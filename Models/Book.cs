@@ -26,6 +26,7 @@ namespace LibrarySystem.Models
 
         [Display(Name = "Categories")]
         [Column(TypeName = "nvarchar(50)")]
+        [NotMapped]
         public List<string> Categories { get; set; }
     }
 }

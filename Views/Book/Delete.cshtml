@@ -44,11 +44,13 @@
             @Html.DisplayNameFor(model => model.Categories)
         </dt>
         <dd>
-            @foreach (var category in Model.Categories)
+            @if (Model.Categories != null)
             {
-                <span>@category</span>
-
-                <br />
+                @foreach (var category in Model.Categories)
+                {
+                    <span>@category</span>
+                    <br />
+                }
             }
         </dd>
 

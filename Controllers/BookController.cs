@@ -9,41 +9,43 @@ namespace LibrarySystem.Controllers
 {
     public class BookController : Controller
     {
-        private static List<Book> _books = new List<Book>();
+        private readonly BookDbContext _context;
 
-        public ActionResult List()
+        public BookController(BookDbContext context)
         {
-            return View(_books);
+            _context = context;
         }
 
-        public ActionResult Add()
+        public IActionResult List()
+        {
+            var books = _context.Books.ToList();
+            return View(books);
+        }
+
+        public IActionResult Add()
         {
             return View(new Book());
         }
 
         [HttpPost]
-        public ActionResult Add(Book book)
+        public IActionResult Add(Book book)
         {
             if (ModelState.IsValid)
             {
-                // Dodaj nową książkę do bazy danych (symulacja)
-                book.Id = _books.Count + 1;
-                _books.Add(book);
+                _context.Books.Add(book);
+                _context.SaveChanges();
                 return RedirectToAction("List");
             }
 
-            // Jeśli ModelState nie jest prawidłowy, zwróć formularz z błędami
             return View(book);
         }
 
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
-            // Pobierz książkę do edycji
-            var book = _books.FirstOrDefault(b => b.Id == id);
+            var book = _context.Books.FirstOrDefault(b => b.Id == id);
 
             if (book == null)
             {
-                // Obsłuż sytuację, gdy książka nie istnieje
                 ViewBag.ErrorMessage = "Książka nie została znaleziona.";
                 return View("Error");
             }
@@ -52,12 +54,11 @@ namespace LibrarySystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Book book)
+        public IActionResult Edit(Book book)
         {
             if (ModelState.IsValid)
             {
-                // Znajdź indeks książki w liście i zaktualizuj dane
-                var existingBook = _books.FirstOrDefault(b => b.Id == book.Id);
+                var existingBook = _context.Books.FirstOrDefault(b => b.Id == book.Id);
 
                 if (existingBook != null)
                 {
@@ -67,22 +68,21 @@ namespace LibrarySystem.Controllers
                     existingBook.Description = book.Description;
                     existingBook.Categories = book.Categories;
 
+                    _context.SaveChanges();
+
                     return RedirectToAction("List");
                 }
             }
 
-            // Jeśli ModelState nie jest prawidłowy, zwróć formularz z błędami
             return View(book);
         }
 
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
-            // Pobierz książkę do usunięcia
-            var book = _books.FirstOrDefault(b => b.Id == id);
+            var book = _context.Books.FirstOrDefault(b => b.Id == id);
 
             if (book == null)
             {
-                // Obsłuż sytuację, gdy książka nie istnieje
                 ViewBag.ErrorMessage = "Książka nie została znaleziona.";
                 return View("Error");
             }
@@ -93,21 +93,17 @@ namespace LibrarySystem.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var book = _books.FirstOrDefault(b => b.Id == id);
+            var book = _context.Books.FirstOrDefault(b => b.Id == id);
 
             if (book != null)
             {
-                _books.Remove(book);
+                _context.Books.Remove(book);
+                _context.SaveChanges();
             }
 
-           
-            return RedirectToAction("List", "Book");
-
+            return RedirectToAction("List");
         }
-
-
-
     }
 }

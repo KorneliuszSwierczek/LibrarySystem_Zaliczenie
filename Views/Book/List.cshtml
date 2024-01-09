@@ -28,7 +28,7 @@
                 <td>@book.Author</td>
                 <td>@book.PublicationYear</td>
                 <td>@book.Description</td>
-                <td>@string.Join(", ", book.Categories)</td>
+                <td>@(book.Categories != null ? string.Join(", ", book.Categories) : "")</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-primary">Edit</a>
                     <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger">Delete</a>
