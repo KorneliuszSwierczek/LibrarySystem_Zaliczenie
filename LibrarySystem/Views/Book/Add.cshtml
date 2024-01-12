@@ -5,40 +5,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add New Book</h2>
+<div class="container mt-5">
+    <div class="card">
+        <h2 class="card-header text-center">@ViewBag.Title</h2>
 
-<form asp-action="Add" method="post">
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
+        <div class="card-body">
+            <form asp-action="Add" method="post">
+                <div class="form-group">
+                    <label asp-for="Title" class="font-weight-bold">Title</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Author" class="font-weight-bold">Author</label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PublicationYear" class="font-weight-bold">Publication Year</label>
+                    <input asp-for="PublicationYear" class="form-control" />
+                    <span asp-validation-for="PublicationYear" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description" class="font-weight-bold">Description</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Categories" class="font-weight-bold">Categories</label>
+                    <input asp-for="Categories" class="form-control" />
+                    <span asp-validation-for="Categories" class="text-danger"></span>
+                </div>
+
+                <!-- Dodaj inne pola formularza zgodnie z potrzebami -->
+
+                <button type="submit" class="btn btn-primary mt-4">Save</button>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Author"></label>
-        <input asp-for="Author" class="form-control" />
-        <span asp-validation-for="Author" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="PublicationYear"></label>
-        <input asp-for="PublicationYear" class="form-control" />
-        <span asp-validation-for="PublicationYear" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Categories"></label>
-        <input asp-for="Categories" class="form-control" />
-        <span asp-validation-for="Categories" class="text-danger"></span>
-    </div>
-
-    <!-- Dodaj inne pola formularza zgodnie z potrzebami -->
-
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+</div>
