@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using LibrarySystem.Models;
 using LibrarySystem.Data;
 
@@ -14,6 +15,7 @@ namespace LibraryManagementSystem.Controllers
             _context = context;
         }
 
+        [Authorize] // Tylko zalogowani użytkownicy mają dostęp
         public ActionResult List()
         {
             var books = _context.Books.ToList();
@@ -93,4 +95,3 @@ namespace LibraryManagementSystem.Controllers
         }
     }
 }
-    
