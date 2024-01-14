@@ -13,7 +13,7 @@ builder.Services.AddDbContext<LibrarySystemContext>(options =>
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = true;
+    options.SignIn.RequireConfirmedAccount = false;
     options.User.RequireUniqueEmail = true;
 })
     .AddRoles<IdentityRole>() // Dodaj obs³ugê ról
