@@ -26,9 +26,9 @@ namespace LibrarySystem.Models
                 builder.Property(b => b.Author).IsRequired().HasMaxLength(50);
                 builder.Property(b => b.PublicationYear).HasColumnType("int");
                 builder.Property(b => b.Description).HasMaxLength(50);
-                // Add other configurations for the Book entity
+                
 
-                // You can also configure relationships, indexes, etc.
+                
             }
         }
 
@@ -36,7 +36,7 @@ namespace LibrarySystem.Models
         {
             modelBuilder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
             modelBuilder.ApplyConfiguration(new BookEntityConfiguration());
-            // Add other configurations
+            
 
             base.OnModelCreating(modelBuilder);
         }

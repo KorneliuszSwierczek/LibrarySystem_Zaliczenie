@@ -16,7 +16,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.SignIn.RequireConfirmedAccount = false;
     options.User.RequireUniqueEmail = true;
 })
-    .AddRoles<IdentityRole>() // Dodaj obs³ugê ról
+    .AddRoles<IdentityRole>() 
     .AddEntityFrameworkStores<LibrarySystemContext>();
 
 builder.Services.AddControllersWithViews();

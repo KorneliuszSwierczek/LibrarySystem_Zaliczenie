@@ -25,7 +25,7 @@ namespace LibrarySystem.Models
         public string Description { get; set; }
 
         [Display(Name = "Categories")]
-        [Column(TypeName = "nvarchar(max)")] // Użyj nvarchar(max), aby przechowywać długie ciągi znaków
+        [Column(TypeName = "nvarchar(max)")] 
         public string Categories { get; set; }
         
 

@@ -10,7 +10,7 @@ namespace LibrarySystem.Data
 {
     public class LibrarySystemContext : IdentityDbContext<IdentityUser>
     {
-        // DbSet for the Book entity
+        
         public DbSet<Book> Books { get; set; }
 
         public LibrarySystemContext(DbContextOptions<LibrarySystemContext> options)
@@ -31,9 +31,9 @@ namespace LibrarySystem.Data
                 entity.Property(b => b.PublicationYear).HasColumnType("int");
                 entity.Property(b => b.Description).HasMaxLength(50);
                 entity.Property(b => b.Categories).HasMaxLength(50);
-                // Add other configurations for the Book entity
+                
 
-                // You can also configure relationships, indexes, etc.
+                
             });
 
             // Seed the database with sample data
