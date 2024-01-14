@@ -48,11 +48,7 @@
             <dd class="col-sm-9">
                 @if (Model.Categories != null)
                 {
-                    @foreach (var category in Model.Categories)
-                    {
-                        <span>@category</span>
-                        <br />
-                    }
+                    <span>@string.Join(", ", Model.Categories)</span>
                 }
             </dd>
         </dl>

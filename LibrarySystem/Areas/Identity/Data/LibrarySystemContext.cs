@@ -31,6 +31,7 @@ namespace LibrarySystem.Data
                 entity.Property(b => b.Author).IsRequired().HasMaxLength(50);
                 entity.Property(b => b.PublicationYear).HasColumnType("int");
                 entity.Property(b => b.Description).HasMaxLength(50);
+                entity.Property(b => b.Categories).HasMaxLength(50);
                 // Add other configurations for the Book entity
 
                 // You can also configure relationships, indexes, etc.

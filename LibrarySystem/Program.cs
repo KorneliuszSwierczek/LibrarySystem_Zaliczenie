@@ -16,7 +16,7 @@ builder.Services.AddDbContext<LibrarySystemContext>(options =>
     options.UseSqlServer(connectionString));
 
 //builder.Services.AddDbContext<BookDbContext>(options =>
-  //  options.UseSqlServer(secondtconnectionString));
+//  options.UseSqlServer(secondtconnectionString));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<LibrarySystemContext>();
@@ -37,7 +37,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
+app.UseAuthentication(); ;
 app.MapRazorPages();
 
 app.UseAuthorization();

@@ -25,8 +25,10 @@ namespace LibrarySystem.Models
         public string Description { get; set; }
 
         [Display(Name = "Categories")]
-        [Column(TypeName = "nvarchar(50)")]
-        [NotMapped]
-        public List<string> Categories { get; set; }
+        [Column(TypeName = "nvarchar(max)")] // Użyj nvarchar(max), aby przechowywać długie ciągi znaków
+        public string Categories { get; set; }
+        
+
+
     }
 }
