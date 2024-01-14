@@ -22,12 +22,14 @@ namespace LibraryManagementSystem.Controllers
             return View(books);
         }
 
+        [Authorize(Roles = "Admin")] // Tylko użytkownicy z rolą "Admin" mają dostęp
         public ActionResult Add()
         {
             return View(new Book());
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add(Book book)
         {
             if (ModelState.IsValid)
@@ -40,6 +42,7 @@ namespace LibraryManagementSystem.Controllers
             return View(book);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var book = _context.Books.FirstOrDefault(b => b.Id == id);
@@ -54,6 +57,7 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Book book)
         {
             if (ModelState.IsValid)
@@ -66,6 +70,7 @@ namespace LibraryManagementSystem.Controllers
             return View(book);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var book = _context.Books.FirstOrDefault(b => b.Id == id);
@@ -80,6 +85,7 @@ namespace LibraryManagementSystem.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(int id)
         {

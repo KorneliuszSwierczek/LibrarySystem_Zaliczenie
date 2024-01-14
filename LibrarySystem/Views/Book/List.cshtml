@@ -31,13 +31,19 @@
                     <td>@book.Description</td>
                     <td>@(book.Categories != null ? string.Join(", ", book.Categories) : "")</td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-primary btn-sm">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger btn-sm">Delete</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-primary btn-sm">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger btn-sm">Delete</a>
+                        }
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 
-    <a asp-action="Add" class="btn btn-success">Add New Book</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Add" class="btn btn-success">Add New Book</a>
+    }
 </div>
